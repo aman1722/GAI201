@@ -34,9 +34,8 @@ def main():
         
         play_again = input("Do you want to play again? (yes/no): ").lower()
         if play_again != "yes":
+            print("Thanks for playing!")
             break
-    
-    print("Thanks for playing!")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
