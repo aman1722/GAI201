@@ -1,0 +1,58 @@
+##36
+SELECT *
+FROM Rides
+WHERE fare = (SELECT MAX(fare) FROM Rides)
+   OR fare = (SELECT MIN(fare) FROM Rides);
+
+##37
+SELECT driver_id, AVG(fare) AS avg_fare, AVG(distance) AS avg_distance
+FROM Rides
+GROUP BY driver_id;
+
+
+##38
+SELECT driver_id, COUNT(*) AS ride_count
+FROM Rides
+GROUP BY driver_id
+HAVING ride_count > 5;
+
+##39
+SELECT D.name
+FROM Rides R
+JOIN Drivers D ON R.driver_id = D.driver_id
+WHERE R.fare = (SELECT MAX(fare) FROM Rides);
+
+
+##40
+SELECT driver_id, SUM(fare) AS total_earnings
+FROM Rides
+GROUP BY driver_id
+ORDER BY total_earnings DESC
+LIMIT 3;
+
+##41
+SELECT *
+FROM Rides
+WHERE ride_date >= CURDATE() - INTERVAL 7 DAY;
+
+##42
+SELECT *
+FROM Rides
+WHERE end_location IS NULL;
+
+
+##43
+SELECT id, fare / distance AS fare_per_mile
+FROM Rides
+ORDER BY fare_per_mile DESC;
+
+##44
+SELECT R.*, D.name AS driver_name, P.name AS passenger_name
+FROM Rides R
+JOIN Drivers D ON R.driver_id = D.driver_id
+JOIN Passengers P ON R.passenger_id = P.passenger_id;
+
+
+##45
+ALTER TABLE Rides
+ADD COLUMN tip DECIMAL(10, 2);

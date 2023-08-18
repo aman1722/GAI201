@@ -1,0 +1,54 @@
+##26
+CREATE TABLE Rides (
+    id INT PRIMARY KEY,
+    driver VARCHAR(255),
+    passenger VARCHAR(255),
+    fare DECIMAL(10, 2),
+    start_time TIMESTAMP
+);
+
+##27
+INSERT INTO Rides (id, driver, passenger, fare, start_time)
+VALUES
+    (1, 'John Doe', 'Alice Smith', 25.50, '2023-08-11 10:00:00'),
+    (2, 'Jane Smith', 'Bob Johnson', 18.75, '2023-08-11 11:30:00'),
+    (3, 'David Brown', 'Emily White', 30.00, '2023-08-11 12:15:00'),
+    (4, 'Michael Green', 'Olivia Davis', 22.25, '2023-08-11 13:45:00'),
+    (5, 'Sophia Wilson', 'Liam Harris', 19.50, '2023-08-11 14:30:00');
+
+##28
+SELECT * FROM Rides
+ORDER BY fare DESC;
+
+
+##29
+SELECT SUM(distance) AS total_distance, SUM(fare) AS total_fare
+FROM Rides;
+
+##30
+SELECT AVG(ride_time) AS avg_ride_time FROM Rides;
+
+##31
+SELECT * FROM Rides
+WHERE start_location LIKE '%Downtown%' OR end_location LIKE '%Downtown%';
+
+##32
+SELECT * FROM Rides
+WHERE start_location LIKE '%Downtown%' OR end_location LIKE '%Downtown%';
+
+
+##33
+UPDATE Rides
+SET fare = new_fare
+WHERE id = 4;
+
+
+##34
+SELECT driver_id, SUM(fare) AS total_fare
+FROM Rides
+GROUP BY driver_id;
+
+
+##35
+DELETE FROM Rides
+WHERE id = 2;
